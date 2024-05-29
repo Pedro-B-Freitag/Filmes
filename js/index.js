@@ -7,7 +7,7 @@ function myFunction() {
     li = ul.getElementsByTagName("li");
 
 
-    fetch('http://www.omdbapi.com/?apikey=83f3aebc&t='+ filter,
+    fetch('http://www.omdbapi.com/?apikey=83f3aebc&type=movie&t='+ filter,
      {method: 'GET'})
     .then(response => response.json())
     .then(data => {
