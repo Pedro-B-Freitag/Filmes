@@ -6,22 +6,21 @@ function myFunction() {
     ul = document.getElementById("myUL");
     li = ul.getElementsByTagName("li");
 
-
-    fetch('http://www.omdbapi.com/?apikey=83f3aebc&type=movie&t='+ filter,
-     {method: 'GET'})
+    fetch('http://www.omdbapi.com/?apikey=83f3aebc&t=' + filter, {method: 'GET'})
     .then(response => response.json())
     .then(data => {
         const nome = data.Title;
         const poster = data.Poster;
-        const filme = `<li><a href='#'><img src="${poster}"><h2>${nome}</h2></a></li>`;
-        document.querySelector('.Filmes').innerHTML += filme;
+
+        if (nome !== undefined) {
+            const filme = `<li><a href='#'><img src="${poster}"><h2>${nome}</h2></a></li>`;
+            document.querySelector('.Filmes').innerHTML += filme;
+        }
     })
     .catch(err => {
         console.log(err);
     });
 
-
-    
     for (i = 0; i < li.length; i++) {
         a = li[i].getElementsByTagName("a")[0];
         txtValue = a.textContent || a.innerText;
