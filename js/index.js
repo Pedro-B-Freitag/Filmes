@@ -1,21 +1,34 @@
-fetch('https://imdb8.p.rapidapi.com/auto-complete?q=game',{
-	method: 'GET',
-	headers: {
-		'x-rapidapi-key': '5dc8018911msh13bbb0abe644969p102fddjsn282d372fc69a',
-		'x-rapidapi-host': 'imdb8.p.rapidapi.com'
-	}
-})
-.then(response => response.json()) 
-.then(data => {
-    const list = data.d;
+function myFunction() {
 
-    list.map((item) => {
-        const nome = item.l;
-        const poster = item.i.imageUrl;
-        const filme = `<li><img src ="${poster}"><h2>${nome}</h2></li>"`
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+
+
+    fetch('http://www.omdbapi.com/?apikey=83f3aebc&t='+ filter,
+     {method: 'GET'})
+    .then(response => response.json())
+    .then(data => {
+        const nome = data.Title;
+        const poster = data.Poster;
+        const filme = `<li><a href='#'><img src="${poster}"><h2>${nome}</h2></a></li>`;
         document.querySelector('.Filmes').innerHTML += filme;
     })
-})
-.catch(err => {
-    console.log(err);
-})
+    .catch(err => {
+        console.log(err);
+    });
+
+
+    
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
