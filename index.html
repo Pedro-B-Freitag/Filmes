@@ -8,8 +8,8 @@
 </head>
 <body>
 
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-        <ul id="myUL">
+    <input type="text" id="pesquisa" onfocus="mostrarResultados()" onblur="esconderResultados()" onkeyup="pesquisarFilme()" placeholder="Pesquisar Filmes.." title="Type in a name">
+        <ul id="resultadosPesquisa">
             <div class="Filmes"></div>
         </ul>   
     

@@ -1,12 +1,25 @@
-function myFunction() {
+function mostrarResultados() {
+    document.getElementById('resultadosPesquisa').style.display = 'block';
+}
+
+function esconderResultados() {
+    setTimeout(() => {
+        document.getElementById('resultadosPesquisa').style.display = 'none';
+    }, 200);
+}
+
+function pesquisarFilme() {
 
     var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById("myInput");
+    input = document.getElementById("pesquisa");
     filter = input.value.toUpperCase();
-    ul = document.getElementById("myUL");
+    ul = document.getElementById("resultadosPesquisa");
     li = ul.getElementsByTagName("li");
 
-    fetch('http://www.omdbapi.com/?apikey=83f3aebc&t=' + filter, {method: 'GET'})
+    document.querySelector('.Filmes').innerHTML = '';
+
+    fetch('http://www.omdbapi.com/?apikey=83f3aebc&t=' + filter, 
+    {method: 'GET'})
     .then(response => response.json())
     .then(data => {
         const nome = data.Title;
