@@ -18,18 +18,20 @@ function pesquisarFilme() {
 
     document.querySelector('.Filmes').innerHTML = '';
 
-    fetch('http://www.omdbapi.com/?apikey=83f3aebc&t=' + filter, 
+    fetch('http://www.omdbapi.com/?apikey=83f3aebc&s=' + filter, 
     {method: 'GET'})
     .then(response => response.json())
     .then(data => {
-        const nome = data.Title;
-        const poster = data.Poster;
-
-        if (nome !== undefined) {
-            const filme = `<li><a href='#'><img src="${poster}"><h2>${nome}</h2></a></li>`;
-            document.querySelector('.Filmes').innerHTML += filme;
-        }
-    })
+            
+        if (data.Response === 'True') {
+            data.Search.forEach(filme => {
+                const nome = filme.Title;
+                const poster = filme.Poster;
+                const filmeHtml = `<li><a href='#'><img src="${poster}" alt="${nome}"><h2>${nome}</h2></a></li>`;
+                document.querySelector('.Filmes').innerHTML += filmeHtml;
+        })
+        
+    }})
     .catch(err => {
         console.log(err);
     });
