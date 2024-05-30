@@ -25,9 +25,10 @@ function pesquisarFilme() {
             
         if (data.Response === 'True') {
             data.Search.forEach(filme => {
-                const nome = filme.Title;
-                const poster = filme.Poster;
-                const filmeHtml = `<li><a href='#'><img src="${poster}" alt="${nome}"><h2>${nome}</h2></a></li>`;
+                const filmeNome = filme.Title;
+                const filmePoster = filme.Poster;
+                const filmeID = filme.imdbID;
+                const filmeHtml = `<li><a href='https://www.omdbapi.com/?apikey=83f3aebc&i=${filmeID}'><img src="${filmePoster}" alt="${filmeNome}"><h2>${filmeNome}</h2></a></li>`;
                 document.querySelector('.Filmes').innerHTML += filmeHtml;
         })
         
