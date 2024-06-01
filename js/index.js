@@ -28,7 +28,7 @@ function pesquisarFilme() {
                 const filmeNome = filme.Title;
                 const filmePoster = filme.Poster;
                 const filmeID = filme.imdbID;
-                const filmeHtml = `<li><a href='https://www.omdbapi.com/?apikey=83f3aebc&i=${filmeID}'><img src="${filmePoster}" alt="${filmeNome}"><h2>${filmeNome}</h2></a></li>`;
+                const filmeHtml = `<li><a href='detalhes.html?filmeId=${filmeID}'><img src="${filmePoster}" alt="${filmeNome}"><h2>${filmeNome}</h2></a></li>`;
                 document.querySelector('.Filmes').innerHTML += filmeHtml;
         })
         
