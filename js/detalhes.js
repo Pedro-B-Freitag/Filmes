@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded',function(){
                 data.Search.forEach(filme => {
                     const filmeNome = filme.Title;
                     const filmePoster = filme.Poster;
-                    const filmeHtml = `<li><img src="${filmePoster}" alt="${filmeNome}"><h2>${filmeNome}</h2></li>`;
+                    const filmeHtml = `<img src="${filmePoster}" alt="${filmeNome}"><h2>${filmeNome}</h2>`;
                     document.querySelector('.detalhesFilme').innerHTML += filmeHtml;
             })
             
